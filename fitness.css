@@ -1,0 +1,7 @@
+[contenteditable="true"] {
+    background-color: rgb(206, 194, 194);
+}
+
+[contenteditable="true"]:focus {
+    background-color: white;
+}
