@@ -79,6 +79,18 @@ function advanceTimer() {
   }
 }
 
+document.getElementById("reset-button").addEventListener("click", (e) => {
+  clearInterval(exerciseTracker.intervalId);
+  exerciseTracker.index = 0;
+  exerciseTracker.exerciseName = null;
+  exerciseTracker.intervalId = null;
+  exerciseTracker.timePassed = 0;
+
+  document.getElementById("current-workout").innerText = "";
+  document.getElementById("time-left").innerText = "";
+  document.getElementById("play-button").innerText = "Play";
+});
+
 document.getElementById("play-button").addEventListener("click", (e) => {
   if (e.target.innerText == "Play") {
     e.target.innerText = "Pause";
