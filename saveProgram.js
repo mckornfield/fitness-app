@@ -15,6 +15,15 @@ function updateParams() {
   }
 }
 
+function addRow() {
+  const table = document.getElementById("table-body");
+  const newRow = table.insertRow();
+  newRow.innerHTML = `<td width="80%" contenteditable='true'></td>
+      <td contenteditable='true'></td>
+      <td class="read-only-cell"><a class="row-remove" href="javascript:void(0);">X</a></td>`;
+  prepareRemoveLinks();
+}
+
 function readParams() {
   const searchParams = new URLSearchParams(window.location.search);
   const workoutAsString = searchParams.get("workout");

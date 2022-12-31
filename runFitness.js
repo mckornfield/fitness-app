@@ -80,7 +80,6 @@ function advanceTimer() {
 }
 
 document.getElementById("play-button").addEventListener("click", (e) => {
-  console.log(e);
   if (e.target.innerText == "Play") {
     e.target.innerText = "Pause";
   } else {
