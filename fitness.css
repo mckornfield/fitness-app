@@ -5,3 +5,8 @@
 [contenteditable="true"]:focus {
     background-color: white;
 }
+
+/* 
+p {
+    display: inline;
+} */

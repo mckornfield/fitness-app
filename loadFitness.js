@@ -9,51 +9,55 @@ const exerciseTracker = {
 
 function updateExercise(index) {
     const elements = document.getElementsByTagName("td")
-    if (elements.length < index * 2) {
-        alert("Workout over!")
+    const rowIndex = index * 3
+    if (elements.length < rowIndex) {
+        clearInterval(exerciseTracker.intervalId)
+        const WORKOUT_FINISHED = "Workout over!"
+        window.speechSynthesis.speak(WORKOUT_FINISHED)
         exerciseTracker.index = 0
         exerciseTracker.exerciseTimeLimit = 0
-        clearInterval(exerciseTracker.intervalId)
+        alert(WORKOUT_FINISHED)
+        return false
     }
-    const exerciseName = elements[index * 2].textContent
-    const exerciseTimeLimit = elements[index * 2 + 1].textContent
+    const exerciseName = elements[rowIndex].textContent
+    const exerciseTimeLimit = elements[rowIndex + 1].textContent
     if (isNaN(exerciseTimeLimit) || isNaN(parseFloat(exerciseTimeLimit))) {
-        alert(`The time in seconds for exercise '${exerciseName}' is not a number, got '${exerciseTimeLimit}'`)
+        alert(`The time in seconds for row ${index + 1} exercise '${exerciseName}' is not a number, got '${exerciseTimeLimit}'`)
         clearInterval(exerciseTracker.intervalId)
+        return false
     }
     exerciseTracker.exerciseName = exerciseName
     exerciseTracker.exerciseTimeLimit = parseFloat(exerciseTimeLimit)
     exerciseTracker.timeInExercise = 0
+    document.getElementById("current-workout").innerText = exerciseName
+    document.getElementById("time-left").innerText = `${exerciseTimeLimit}s`
+    return true
 }
 
 function advanceTimer() {
     exerciseTracker.timePassed++
     exerciseTracker.timeInExercise++
+    const { exerciseTimeLimit, timeInExercise } = exerciseTracker
+    document.getElementById("time-left").innerText = `${exerciseTimeLimit - timeInExercise}s`
     // Get next exercise
-    if (exerciseTracker.timeInExercise > exerciseTracker.exerciseTimeLimit) {
+    if (timeInExercise >= exerciseTracker.exerciseTimeLimit) {
         exerciseTracker.index++
         updateExercise(exerciseTracker.index)
     }
     console.log(exerciseTracker)
 }
 
-document.getElementById("play-button").addEventListener("click", () => {
+document.getElementById("play-button").addEventListener("click", (e) => {
     if (exerciseTracker.intervalId) {
         clearInterval(exerciseTracker.intervalId)
         exerciseTracker.intervalId = null
     } else {
+        let startSucceeded = false
         if (exerciseTracker.exercise == null) {
-            updateExercise(0)
+            startSucceeded = updateExercise(0)
         }
-        exerciseTracker.intervalId = setInterval(advanceTimer, 1000)
+        if (startSucceeded) {
+            exerciseTracker.intervalId = setInterval(advanceTimer, 1000)
+        }
     }
-})
-
-document.getElementById("edit-button").addEventListener("click", () => {
-    const elements = document.getElementsByTagName("td")
-    Array.from(elements).forEach(e => {
-        console.log(e.contentEditable)
-        e.contentEditable = e.contentEditable == "true" ? "false" : "true"
-        console.log(e.contentEditable)
-    })
 })

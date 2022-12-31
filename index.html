@@ -4,20 +4,29 @@
     <tr>
         <th>Exercise</th>
         <th>Seconds</th>
+        <th></th>
     </tr>
-    <tbody>
+    <tbody id="table-body">
         <tr>
-            <td width="80%" contenteditable='true'></td>
-            <td contenteditable='true'></td>
+            <td width="80%" contenteditable='true'>Burpees</td>
+            <td contenteditable='true'>3</td>
+            <td class="read-only-cell"><a class="row-remove" href="javascript:void(0);">X</a></td>
         </tr>
         <tr>
-            <td width="80%" contenteditable='true'></td>
-            <td contenteditable='true'></td>
+            <td width="80%" contenteditable='true'>Situps</td>
+            <td contenteditable='true'>10</td>
+            <td class="read-only-cell"><a class="row-remove" href="javascript:void(0);">X</a></td>
         </tr>
     </tbody>
 </table>
 <button id="play-button">Play</button>
 <button id="edit-button">Edit</button>
-<script src="loadFitness.js">
-</script>
+<button id="add-button">+</button>
+<script src="loadFitness.js"></script>
+<script src="fitnessGridCrud.js"></script>
+
+<div>
+    <p>Current Workout: <span id="current-workout"></span> </p>
+    <p>Time Left: <span id="time-left"></span></p>
+</div>
 <css></css>
