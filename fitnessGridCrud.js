@@ -5,6 +5,12 @@ document.getElementById("edit-button").addEventListener("click", () => {
       e.contentEditable = e.contentEditable == "true" ? "false" : "true";
     }
   });
+  const addButton = document.getElementById("add-button");
+  if (addButton.style.display == "none") {
+    addButton.style.display = "block";
+  } else {
+    addButton.style.display = "none";
+  }
 });
 
 function prepareRemoveLinks() {
@@ -13,7 +19,6 @@ function prepareRemoveLinks() {
     link.addEventListener("click", (e) => {
       const rowToRemove = e.target.parentElement.parentElement;
       document.getElementById("table-body").removeChild(rowToRemove);
-      // TODO: Also update data once saved
     })
   );
 }

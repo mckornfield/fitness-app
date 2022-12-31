@@ -80,13 +80,21 @@ function advanceTimer() {
 }
 
 document.getElementById("play-button").addEventListener("click", (e) => {
+  console.log(e);
+  if (e.target.innerText == "Play") {
+    e.target.innerText = "Pause";
+  } else {
+    e.target.innerText = "Play";
+  }
   if (exerciseTracker.intervalId) {
     clearInterval(exerciseTracker.intervalId);
     exerciseTracker.intervalId = null;
   } else {
     let startSucceeded = false;
-    if (exerciseTracker.exercise == null) {
+    if (exerciseTracker.exerciseName == null) {
       startSucceeded = updateExercise(0);
+    } else {
+      startSucceeded = true;
     }
     if (startSucceeded) {
       exerciseTracker.intervalId = setInterval(advanceTimer, 1000);

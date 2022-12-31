@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="fitness.css">
-<table>
+<table id="exercise-table">
     <tr>
         <th>Exercise</th>
         <th>Seconds</th>
@@ -19,16 +19,19 @@
         </tr>
     </tbody>
 </table>
-<button id="play-button">Play</button>
-<button id="edit-button">Edit</button>
-<button id="add-button">+</button>
+<div>
+    <button id="add-button">+Add Row</button>
+</div>
+<div>
+    <button id="edit-button">Edit</button>
+</div>
 <button id="save-button">Save</button>
-<script src="runFitness.js"></script>
-<script src="fitnessGridCrud.js"></script>
-<script src="saveProgram.js"></script>
-
 <div>
     <p>Current Workout: <span id="current-workout"></span> </p>
     <p>Time Left: <span id="time-left"></span></p>
+    <button id="play-button">Play</button>
 </div>
-<css></css>
+
+<script src="runFitness.js"></script>
+<script src="fitnessGridCrud.js"></script>
+<script src="saveProgram.js"></script>
