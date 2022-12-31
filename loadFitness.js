@@ -10,18 +10,19 @@ const exerciseTracker = {
 function say(text) {
   window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
 }
+
+function getRowIndex(index) {
+  return index * 3; // Number of columns
+}
+
 function updateExercise(index) {
   const elements = document.getElementsByTagName("td");
-  const rowIndex = index * 3;
-  if (elements.length < rowIndex) {
-    clearInterval(exerciseTracker.intervalId);
-    const WORKOUT_FINISHED = "Workout over!";
-    say(WORKOUT_FINISHED);
-    exerciseTracker.index = 0;
-    exerciseTracker.exerciseTimeLimit = 0;
-    alert(WORKOUT_FINISHED);
+  const rowIndex = getRowIndex(index);
+  if (rowIndex >= elements.length) {
     return false;
   }
+  console.log(rowIndex);
+  console.log(elements.length);
   const exerciseName = elements[rowIndex].textContent;
   const exerciseTimeLimit = elements[rowIndex + 1].textContent;
   if (isNaN(exerciseTimeLimit) || isNaN(parseFloat(exerciseTimeLimit))) {
@@ -61,8 +62,20 @@ function advanceTimer() {
     new Audio("beep.mp3").play();
   }
   if (timeInExercise >= exerciseTracker.exerciseTimeLimit) {
-    exerciseTracker.index++;
-    updateExercise(exerciseTracker.index);
+    const shouldAdvance = updateExercise(exerciseTracker.index + 1);
+    if (shouldAdvance) {
+      exerciseTracker.index++;
+    }
+    const elements = document.getElementsByTagName("td");
+    const rowIndex = getRowIndex(exerciseTracker.index + 1);
+    if (!shouldAdvance && rowIndex >= elements.length) {
+      clearInterval(exerciseTracker.intervalId);
+      const WORKOUT_FINISHED = "Workout over!";
+      say(WORKOUT_FINISHED);
+      exerciseTracker.index = 0;
+      exerciseTracker.exerciseTimeLimit = 0;
+      return false;
+    }
   }
 }
 
