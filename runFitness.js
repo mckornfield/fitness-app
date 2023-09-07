@@ -7,6 +7,8 @@ const exerciseTracker = {
   intervalId: null,
 };
 
+let wakeLock = null;
+
 function say(text) {
   window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
 }
@@ -43,6 +45,14 @@ function updateExercise(index) {
   return true;
 }
 
+function clearWakeLock() {
+  if (wakeLock) {
+    wakeLock.release().then(() => {
+      wakeLock = null;
+      console.log("released lock!");
+    });
+  }
+}
 function advanceTimer() {
   exerciseTracker.timePassed++;
   exerciseTracker.timeInExercise++;
@@ -74,6 +84,7 @@ function advanceTimer() {
       say(WORKOUT_FINISHED);
       exerciseTracker.index = 0;
       exerciseTracker.exerciseTimeLimit = 0;
+      clearWakeLock();
       return false;
     }
   }
@@ -92,8 +103,13 @@ document.getElementById("reset-button").addEventListener("click", (e) => {
 });
 
 document.getElementById("play-button").addEventListener("click", (e) => {
+  clearWakeLock();
   if (e.target.innerText == "Play") {
     e.target.innerText = "Pause";
+    wakeLock = navigator.wakeLock.request("screen").then((newWakeLock) => {
+      wakeLock = newWakeLock;
+      console.log("lock acquired!");
+    });
   } else {
     e.target.innerText = "Play";
   }
