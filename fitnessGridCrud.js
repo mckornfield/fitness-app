@@ -11,6 +11,14 @@ document.getElementById("edit-button").addEventListener("click", () => {
   } else {
     addButton.style.display = "none";
   }
+  const removeRowElements = document.getElementsByClassName("row-remove");
+  Array.from(removeRowElements).forEach((e) => {
+    if (e.style.display == "none") {
+      e.style.display = "block";
+    } else {
+      e.style.display = "none";
+    }
+  });
 });
 
 function prepareRemoveLinks() {
