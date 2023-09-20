@@ -63,9 +63,9 @@ function advanceTimer() {
     return;
   }
   document.getElementById("time-left").innerText = `${timeLeft}s`;
-  // Get next exercise
 
-  if (timeLeft < 4 && timeLeft > 0) {
+  // Say every multiple of 15, and 3,2,1, but not 0
+  if ((timeLeft % 15 == 0 || timeLeft < 4) && timeLeft > 0) {
     say(timeLeft);
   }
   if (timeLeft == 0) {
@@ -84,6 +84,7 @@ function advanceTimer() {
       say(WORKOUT_FINISHED);
       exerciseTracker.index = 0;
       exerciseTracker.exerciseTimeLimit = 0;
+      document.getElementById("play-button").innerText = "Play";
       clearWakeLock();
       return false;
     }
