@@ -64,8 +64,8 @@ function advanceTimer() {
   }
   document.getElementById("time-left").innerText = `${timeLeft}s`;
 
-  // Say every multiple of 15, and 3,2,1, but not 0
-  if ((timeLeft % 15 == 0 || timeLeft < 4) && timeLeft > 0) {
+  // Say every multiple of 30, and 2,1, but not 0
+  if ((timeLeft % 30 == 0 || timeLeft < 3) && timeLeft > 0) {
     say(timeLeft);
   }
   if (timeLeft == 0) {
