@@ -6,8 +6,10 @@
 </head>
 
 <body>
-    <p>Current Workout: <span id="current-workout"></span> </p>
+    <p>Current Workout: <span id="current-workout"></span> <span id="round-counter"></span></p>
     <p>Time Left: <span id="time-left"></span></p>
+    <p>Rest: <input id="rest" type="number" size="4" value="0"></p>
+    <p>Rounds: <input id="rounds" type="number" size="4" value="0"></p>
     <button id="play-button">Play</button>
     <button id="reset-button">Reset</button>
     <table id="exercise-table">
@@ -30,11 +32,10 @@
         </tbody>
     </table>
     <div>
+        <button id="edit-button">Edit</button>
         <button id="add-button">+Add Row</button>
     </div>
-    <div>
-        <button id="edit-button">Edit</button>
-    </div>
+    <br>
     <button id="save-button">Save</button>
 </body>
 <script src="runFitness.js"></script>

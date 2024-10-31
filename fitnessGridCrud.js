@@ -7,7 +7,7 @@ document.getElementById("edit-button").addEventListener("click", () => {
   });
   const addButton = document.getElementById("add-button");
   if (addButton.style.display == "none") {
-    addButton.style.display = "block";
+    addButton.style.display = "";
   } else {
     addButton.style.display = "none";
   }

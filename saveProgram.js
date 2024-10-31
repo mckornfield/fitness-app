@@ -6,11 +6,18 @@ function updateParams() {
   if ("URLSearchParams" in window) {
     const searchParams = new URLSearchParams(window.location.search);
     const elements = document.getElementsByTagName("td");
+
     const content = Array.from(elements).map((e) => e.textContent);
-    console.log(content);
     searchParams.set("workout", content.join("~"));
+
+    const restValue = document.getElementById("rest").value;
+    searchParams.set("rest", restValue);
+
+    const rounds = document.getElementById("rounds").value;
+    searchParams.set("rounds", rounds);
     var newRelativePathQuery =
       window.location.pathname + "?" + searchParams.toString();
+
     history.pushState(null, "", newRelativePathQuery);
   }
 }
@@ -46,5 +53,9 @@ function readParams() {
     elements[rowIndex].textContent = exerciseName;
     elements[rowIndex + 1].textContent = exerciseTime;
   }
+  document.getElementById("rest").value =
+    parseInt(searchParams.get("rest")) || 0;
+  document.getElementById("rounds").value =
+    parseInt(searchParams.get("rounds")) || 0;
 }
 readParams();
