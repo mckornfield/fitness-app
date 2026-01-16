@@ -80,15 +80,16 @@ function bulkEditToTable(text) {
     if (lastSpaceIndex === -1) {
       // No space found, treat entire line as exercise name
       exerciseName = line.trim();
-      duration = "0";
+      duration = "30";
     } else {
       exerciseName = line.substring(0, lastSpaceIndex).trim();
       const durationPart = line.substring(lastSpaceIndex + 1).trim();
-
       // Check if duration is a valid number
       if (isNaN(durationPart) || durationPart === "") {
-        duration = "0";
+        exerciseName = line
+        duration = "30";
       } else {
+        exerciseName = line.substring(0, lastSpaceIndex).trim();
         duration = durationPart;
       }
     }
