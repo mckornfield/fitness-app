@@ -69,6 +69,9 @@ function bulkEditToTable(text) {
   const removeLinks = document.getElementsByClassName("row-remove");
   Array.from(removeLinks).forEach((e) => e.click());
 
+  // Track last valid duration to use as placeholder
+  let lastValidDuration = "30";
+
   // Add new rows from bulk edit
   for (let line of lines) {
     if (line.trim() === "") continue;
@@ -80,17 +83,19 @@ function bulkEditToTable(text) {
     if (lastSpaceIndex === -1) {
       // No space found, treat entire line as exercise name
       exerciseName = line.trim();
-      duration = "30";
+      duration = lastValidDuration;
     } else {
       exerciseName = line.substring(0, lastSpaceIndex).trim();
       const durationPart = line.substring(lastSpaceIndex + 1).trim();
       // Check if duration is a valid number
       if (isNaN(durationPart) || durationPart === "") {
-        exerciseName = line
-        duration = "30";
+        exerciseName = line;
+        duration = lastValidDuration;
       } else {
         exerciseName = line.substring(0, lastSpaceIndex).trim();
         duration = durationPart;
+        // Update last valid duration for future rows
+        lastValidDuration = duration;
       }
     }
 
