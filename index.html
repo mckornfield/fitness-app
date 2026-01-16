@@ -6,12 +6,22 @@
 </head>
 
 <body>
-    <p>Current Workout: <span id="current-workout"></span> <span id="round-counter"></span></p>
-    <p>Time Left: <span id="time-left"></span></p>
-    <p>Rest: <input id="rest" type="number" size="4" value="0"></p>
-    <p>Rounds: <input id="rounds" type="number" size="4" value="0"></p>
-    <button id="play-button">Play</button>
-    <button id="reset-button">Reset</button>
+    <div class="status-section">
+        <p>Current Workout: <span id="current-workout"></span> <span id="round-counter"></span></p>
+        <p>Time Left: <span id="time-left"></span></p>
+    </div>
+
+    <div class="controls-section">
+        <div class="input-row">
+            <label>Rest: <input id="rest" type="number" size="4" value="0"></label>
+            <label>Rounds: <input id="rounds" type="number" size="4" value="0"></label>
+        </div>
+        <div class="button-row">
+            <button id="play-button">Play</button>
+            <button id="reset-button">Reset</button>
+        </div>
+    </div>
+
     <table id="exercise-table">
         <tr>
             <th>Exercise</th>
@@ -31,12 +41,15 @@
             </tr>
         </tbody>
     </table>
-    <div>
+    <textarea id="bulk-edit-textarea" style="display: none;"></textarea>
+    <div class="action-buttons">
         <button id="edit-button">Edit</button>
         <button id="add-button">+Add Row</button>
+        <button id="bulk-edit-button">Bulk Edit</button>
     </div>
-    <br>
-    <button id="save-button">Save</button>
+    <div class="save-section">
+        <button id="save-button">Save</button>
+    </div>
 </body>
 <script src="runFitness.js"></script>
 <script src="fitnessGridCrud.js"></script>
