@@ -137,7 +137,7 @@ td {
 
   .input-row label {
     width: 100%;
-    font-size: 22px;
+    font-size: 26px;
   }
 
   .button-row {
@@ -151,16 +151,16 @@ td {
   th,
   td,
   p {
-    font-size: 22px;
+    font-size: 26px;
   }
 
   button {
     padding: 16px 28px;
-    font-size: 22px;
+    font-size: 26px;
   }
 
   input[type="number"] {
-    font-size: 22px;
+    font-size: 26px;
     padding: 10px;
     width: 120px;
   }
@@ -174,7 +174,7 @@ td {
   }
 
   #bulk-edit-textarea {
-    font-size: 22px;
+    font-size: 26px;
     padding: 15px;
   }
 
