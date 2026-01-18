@@ -19,6 +19,7 @@ function updateParams() {
       window.location.pathname + "?" + searchParams.toString();
 
     history.pushState(null, "", newRelativePathQuery);
+    updatePageTitle();
   }
 }
 
@@ -29,6 +30,33 @@ function addRow() {
       <td contenteditable='true'></td>
       <td class="read-only-cell"><a class="row-remove" href="javascript:void(0);">X</a></td>`;
   prepareRemoveLinks();
+}
+
+function updatePageTitle() {
+  const tableBody = document.getElementById("table-body");
+  const rows = tableBody.getElementsByTagName("tr");
+
+  if (rows.length === 0) {
+    document.title = "MattK's Workout App";
+    return;
+  }
+
+  const exerciseNames = [];
+  for (let i = 0; i < Math.min(3, rows.length); i++) {
+    const cells = rows[i].getElementsByTagName("td");
+    if (cells.length > 0 && cells[0].textContent.trim()) {
+      exerciseNames.push(cells[0].textContent.trim());
+    }
+  }
+
+  if (exerciseNames.length > 0) {
+    document.title = exerciseNames.join(", ");
+    if (rows.length > 3) {
+      document.title += ", ...";
+    }
+  } else {
+    document.title = "MattK's Workout App";
+  }
 }
 
 function readParams() {
@@ -57,5 +85,6 @@ function readParams() {
     parseInt(searchParams.get("rest")) || 0;
   document.getElementById("rounds").value =
     parseInt(searchParams.get("rounds")) || 0;
+  updatePageTitle();
 }
 readParams();
