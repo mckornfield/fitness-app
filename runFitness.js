@@ -154,10 +154,12 @@ document.getElementById("play-button").addEventListener("click", (e) => {
   clearWakeLock();
   if (e.target.innerText == "Play") {
     e.target.innerText = "Pause";
-    wakeLock = navigator.wakeLock.request("screen").then((newWakeLock) => {
-      wakeLock = newWakeLock;
-      console.log("lock acquired!");
-    });
+    if ('wakeLock' in navigator) {
+      wakeLock = navigator.wakeLock.request("screen").then((newWakeLock) => {
+        wakeLock = newWakeLock;
+        console.log("lock acquired!");
+      });
+    }
   } else {
     e.target.innerText = "Play";
   }

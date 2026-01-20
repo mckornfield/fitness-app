@@ -38,7 +38,7 @@ function addRow() {
   const newRow = table.insertRow();
   newRow.innerHTML = `<td width="80%" contenteditable='true'></td>
     <td contenteditable='true'></td>
-    <td class="read-only-cell"><a class="row-remove" href="javascript:void(0);">X</a></td>`;
+    <td class="read-only-cell"><a class="row-remove" href="javascript:void(0);">❌</a></td>`;
   prepareRemoveLinks();
 }
 document.getElementById("add-button").addEventListener("click", addRow);

@@ -101,6 +101,13 @@ td {
   text-align: left;
 }
 
+.row-remove {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+}
+
 #bulk-edit-textarea {
   width: 100%;
   min-height: 300px;
@@ -184,5 +191,69 @@ td {
 
   .controls-section {
     margin-bottom: 25px;
+  }
+
+  .row-remove {
+    font-size: 28px;
+  }
+}
+
+/* Dark mode support based on device settings */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+  }
+
+  .status-section,
+  .controls-section {
+    border-bottom-color: #444;
+  }
+
+  [contenteditable="true"] {
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+  }
+
+  [contenteditable="true"]:focus {
+    background-color: #2a2a2a;
+    color: #ffffff;
+  }
+
+  button {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border-color: #444;
+  }
+
+  button:hover {
+    background-color: #3a3a3a;
+  }
+
+  input[type="number"] {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border-color: #444;
+  }
+
+  table {
+    border-color: #444;
+  }
+
+  th {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #e0e0e0;
+  }
+
+  td {
+    border-color: #444;
+    background-color: #1a1a1a;
+  }
+
+  #bulk-edit-textarea {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border-color: #444;
   }
 }
