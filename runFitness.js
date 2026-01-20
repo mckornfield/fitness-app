@@ -7,6 +7,7 @@ let exerciseTracker = {
   intervalId: null,
   inRest: true,
   roundNumber: 1,
+  isSystemRest: false,
 };
 
 const exerciseReset = structuredClone(exerciseTracker);
@@ -45,6 +46,9 @@ function updateExercise(index) {
   if (!exerciseTracker.inRest && restValue > 0) {
     exerciseName = REST_NAME;
     exerciseTimeLimit = restValue;
+    exerciseTracker.isSystemRest = true;
+  } else {
+    exerciseTracker.isSystemRest = false;
   }
   exerciseTracker.exerciseName = exerciseName;
   exerciseTracker.exerciseTimeLimit = parseFloat(exerciseTimeLimit);
@@ -62,7 +66,7 @@ function updateExercise(index) {
   }
   say(exerciseName);
   exerciseTracker.inRest = !exerciseTracker.inRest;
-  return exerciseName != REST_NAME;
+  return !exerciseTracker.isSystemRest;
 }
 
 function clearWakeLock() {
