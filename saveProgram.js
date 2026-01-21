@@ -39,15 +39,6 @@ async function updateParams() {
   }
 }
 
-function addRow() {
-  const table = document.getElementById("table-body");
-  const newRow = table.insertRow();
-  newRow.innerHTML = `<td width="80%" contenteditable='true'></td>
-      <td contenteditable='true'></td>
-      <td class="read-only-cell"><a class="row-remove" href="javascript:void(0);">❌</a></td>`;
-  prepareRemoveLinks();
-}
-
 function updatePageTitle() {
   const tableBody = document.getElementById("table-body");
   const rows = tableBody.getElementsByTagName("tr");

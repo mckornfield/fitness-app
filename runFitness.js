@@ -17,7 +17,23 @@ const REST_NAME = "Rest";
 let wakeLock = null;
 
 function say(text) {
-  window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+  // Cancel any ongoing speech to prevent queuing
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+
+  // Configure voice properties
+  utterance.rate = 1.0;     // Speed (0.1 to 10)
+  utterance.pitch = 1.0;    // Pitch (0 to 2)
+  utterance.volume = 1.0;   // Volume (0 to 1)
+
+  // Select a voice if available
+  const voices = window.speechSynthesis.getVoices();
+  if (voices.length > 0) {
+    utterance.voice = voices[0];
+  }
+
+  window.speechSynthesis.speak(utterance);
 }
 
 function getRowIndex(index) {
